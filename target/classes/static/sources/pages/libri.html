@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="/sources/style/style.css" type="text/css">
         <link rel="stylesheet" href="/sources/style/mobile.css" type="text/css">
         <script src="/sources/script/cookies.js" type="text/javascript"></script>
-        <script src="/sources/script/pages/home.js" type="text/javascript"></script>
+        <script src="/sources/script/pages/libri.js" type="text/javascript" defer></script>
     </head>
 
     <body>
@@ -34,8 +34,8 @@
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"><h1>BibliOpen</h1></a>
         
                 <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/sources/pages/libri.html" class="nav-link">Libri</a></li>
+                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/sources/pages/libri.html" class="nav-link active">Libri</a></li>
                 <li class="nav-item"><a href="/sources/pages/info.html" class="nav-link">Info</a></li>
                 <li class="nav-item"><a href="/sources/pages/reserved/" class="nav-link">Area Personale</a></li>
                 </ul>
@@ -45,14 +45,24 @@
 
         <section>
             <article>
-                <h1>Il gestionale per biblioteche</h1>
-                <p>BibliOpen è un gestionale completamente <i>open source</i> per la gestione di biblioteche scritto in Java</p>
+                <h1>Libri disponibili</h1>
+                <p>Tramite questa interfaccia puoi visualizzare (eventualmente filtrando) i volumi disponibili nella biblioteca.</p>
 
-                <h2 class="mt-5">Come funziona?</h2>
-                <p>BibliOpen è scritto in Java utilizzando il framework Spring Boot; adopera come approccio l'uso di Ajax per scindere il frontend dal backend rendendo così anche possibile una futura pacchettizzazione mediante Electron.</p>
+                <div class="container overflow-x-scroll w-75 text-center mt-5">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titolo</th>
+                                <th scope="col">Autore</th>
+                                <th scope="col">Anno</th>
+                                <th scope="col">Disponibile</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabellaLibri">
 
-                <h2 class="mt-5">L'approccio Ajax</h2>
-                <p>L'idea di base è quella di scrivere nel frontend degli script che <i>popolino</i> la pagina una volta caricata mediante richieste al backend; questo ha fondamentalmente due vantaggi: il primo è quello di alleggerire il server che si occupa solamente di servire contenuto statico e di gestire dei rest controller, il secondo è quello dell'indipendenza tra frontend e backend: utile per l'eventuale recupero per app e/o software lato client.</p>
+                        </tbody>
+                    </table>
+                </div>
             </article>
         </section>
 
