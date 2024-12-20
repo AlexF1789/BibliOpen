@@ -13,11 +13,22 @@ class Libri {
             type: 'POST',
             data: 'data='+JSON.stringify({
                 limit: this.limit,
-                offet: this.offset
+                offset: this.offset
             }),
             success: (risposta) => {
                 if(risposta.esito) {
                     // abbiamo correttamente recuperato i libri
+                    risposta.data.sort((a,b) =>
+                        a.titolo.localeCompare(b.titolo)
+                    ).forEach((libro) => {
+                        $('#tabellaLibri').append(
+                            '<tr>'+
+                                '<td>'+libro.titolo+'</td>'+
+                                '<td>'+libro.nome+' '+libro.cognome+'</td>'+
+                                '<td>'+libro.annoPubblicazione+'</td>'+
+                            '</tr>'
+                        )
+                    })
                 } else {
                     console.log(risposta.message)
                     this.messaggioErrore()
@@ -38,7 +49,7 @@ class Libri {
                 confirmButton: 'btn btn-primary'
             }
         }).then(() => {
-            location.href = '/'
+            //location.href = '/'
         })
     }
 

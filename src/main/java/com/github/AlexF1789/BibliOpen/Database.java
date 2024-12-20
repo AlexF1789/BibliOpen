@@ -29,10 +29,10 @@ public class Database {
     }
 
     // metodi di accesso ai dati
-    public JSONArray getLibri(int limit, int offset) {
+    public JSONArray getLibri(int limit, int offset) throws SQLException {
         JSONArray risposta = new JSONArray();
         JSONObject record;
-        String[] campi = {};
+        String[] campi = {"titolo", "cognome", "nome", "annoPubblicazione"};
 
         // restituiamo un vettore vuoto se il numero di dati che ci interessa è <= 0
         if(limit <= 0)
@@ -42,7 +42,7 @@ public class Database {
         if(limit >= 50)
             limit = 50;
 
-        PreparedStatement query = this.db.prepareStatement("");
+        PreparedStatement query = this.db.prepareStatement("SELECT libri.titolo, autori.nome, autori.cognome, libri.annoPubblicazione FROM libri, autori WHERE libri.autore=autori.ID LIMIT ? OFFSET ?");
         query.setInt(1,limit);
         query.setInt(2,offset);
 
