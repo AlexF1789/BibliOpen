@@ -12,6 +12,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/sources/images/favicon/apple-touch-icon.png">
         <meta name="apple-mobile-web-app-title" content="BibliOpen">
         <link rel="manifest" href="/sources/images/favicon/site.webmanifest">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
         <!-- JQuery, Swal2 e Bootstrap -->
         <link rel="stylesheet" href="/sources/style/bootstrap.css" type="text/css">
@@ -49,7 +51,11 @@
                 <p>Tramite questa interfaccia puoi visualizzare (eventualmente filtrando) i volumi disponibili nella biblioteca.</p>
 
                 <div class="container overflow-x-scroll w-75 text-center mt-5">
-                    <table class="table table-striped">
+                    <!-- bottone filtro -->
+                    <button class="btn btn-primary">Filtri</button>
+
+                    <!-- tabella -->
+                    <table class="table table-striped my-5">
                         <thead>
                             <tr>
                                 <th scope="col">Titolo</th>
@@ -58,9 +64,19 @@
                             </tr>
                         </thead>
                         <tbody id="tabellaLibri">
-
+                            <!-- viene popolata in un secondo tempo grazie a una richiesta Ajax -->
                         </tbody>
                     </table>
+
+                    <!-- bottoni di scorrimento e numero di elementi della tabella -->
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary me-4" id="frecciaIndietro">&lt;</button>
+
+                        <input type="text" class="form-control text-center" placeholder="Escludi i primi" aria-label="Offset" id="offset">
+                        <input type="text" class="form-control text-center" placeholder="Numero libri" aria-label="Libri" id="numElementi">
+
+                        <button class="btn btn-primary ms-4" id="frecciaAvanti">&gt;</button>
+                    </div>                      
                 </div>
             </article>
         </section>
