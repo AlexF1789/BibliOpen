@@ -95,45 +95,13 @@ public class Database {
     }
 
     public boolean sincronizzaUtente(Utente utente) throws SQLException {
-        PreparedStatement query = this.db.prepareStatement("UPDATE utenti SET cognome=?, nome=?, telefono=? WHERE ID=?");
+        PreparedStatement query = this.db.prepareStatement("UPDATE utenti SET cognome=?, nome=? WHERE ID=?");
         query.setString(1,utente.getCognome());
         query.setString(2,utente.getNome());
         query.setInt(3,utente.getID());
-        query.setString(4, utente.getTelefono());
 
         int righeModificate = query.executeUpdate();
 
         return (righeModificate > 0);
-    }
-    
-    // metodi legati alla gestione degli utenti
-    public Utente getUtente(String mail, String password) throws SQLException {
-    	PreparedStatement query = this.db.prepareStatement("SELECT cognome, nome, ID, telefono, ruolo FROM utenti WHERE mail=? AND password=? LIMIT 1");
-    	query.setString(1, mail);
-    	query.setString(2, password);
-    	
-    	ResultSet risposta = query.executeQuery();
-    	if(!risposta.next())
-    		return null;
-    	
-    	
-    	// restituiamo rispettivamente un'istanza della classe Utente o Admin (sua derivata)
-    	return switch(risposta.getInt("ruolo")) {
-    		case 0 -> new Utente(
-	    			risposta.getString("cognome"),
-	    			risposta.getString("nome"),
-	    			risposta.getString("telefono"),
-	    			risposta.getInt("ID")
-	    	);
-    		
-    		case 1 -> new Admin(
-	    			risposta.getString("cognome"),
-	    			risposta.getString("nome"),
-	    			risposta.getString("telefono"),
-	    			risposta.getInt("ID")
-	    	);
-    		
-    		default -> null;
-    	};
     }
 }

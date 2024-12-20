@@ -2,14 +2,13 @@ package com.github.AlexF1789.BibliOpen;
 
 public class Utente {
 
-    private String cognome, nome, telefono;
+    private String cognome, nome;
     private int ID;
 
-    public Utente(String cognome, String nome, String telefono, int ID) {
+    public Utente(String cognome, String nome, int ID) {
         this.ID = ID;
         this.cognome = cognome;
         this.nome = nome;
-        this.telefono = telefono;
     }
 
     // getters e setters
@@ -24,10 +23,6 @@ public class Utente {
     public int getID() {
         return ID;
     }
-    
-    public String getTelefono() {
-    	return this.telefono;
-    }
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
@@ -35,10 +30,6 @@ public class Utente {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-    
-    public void setTelefono(String telefono) {
-    	this.telefono = telefono;
     }
 
     public boolean sincronizzaModifiche() {
