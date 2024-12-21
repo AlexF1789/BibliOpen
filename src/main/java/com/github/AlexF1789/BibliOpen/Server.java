@@ -33,7 +33,7 @@ public class Server {
         return risposta.toString();
     }
     
-    @RequestMapping(value="/login", method=RequestMethod.GET, produces="application/json")
+    @RequestMapping(value="/login", method=RequestMethod.POST, produces="application/json")
     public String performLogin(@RequestParam(name="data") String data, HttpServletRequest richiesta) {
     	JSONObject risposta = new JSONObject();
     	JSONObject parametri = new JSONObject(data);
@@ -75,7 +75,7 @@ public class Server {
     	return risposta.toString();
     }
 
-	@RequestMapping(value="/logout", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/logout", method=RequestMethod.POST, produces="application/json")
 	public String performLogout(HttpServletRequest richiesta) {
 		JSONObject risposta = new JSONObject();
 
@@ -85,7 +85,7 @@ public class Server {
 		return risposta.toString();
 	}
 
-	@RequestMapping(value="/getSessione", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/getSessione", method=RequestMethod.POST, produces="application/json")
 	public String getSessione(HttpServletRequest richiesta) {
 		JSONObject risposta = new JSONObject();
 		HttpSession sessione = richiesta.getSession();
